@@ -1,17 +1,32 @@
-export const NewHabitForm = () => {
+import { useState } from "react"
+import type { NewHabitFormProps } from "../interfaces/types"
+import { colors } from "../utils/colors";
+
+export const NewHabitForm = ({ onAddHabit }: NewHabitFormProps) => {
+    const [habitName, setHabitName] = useState("");
+    const [selectedColor, setSelectedColor] = useState<string | null>(null);
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+
+        if (!habitName.trim() || !selectedColor) return;
+
+        onAddHabit({name: habitName, color: selectedColor});
+        setHabitName("");
+        setSelectedColor(null);
+    }
+
     return (
-        <div className="flex flex-col items-center gap-3 bg-blue-500 p-5">
-            <input className="border-2 rounded-sm px-2" type="text" placeholder="New habit" />
+        <form onSubmit={handleSubmit} className="flex flex-col items-center gap-3 border-2 p-5">
+            <input className="w-full border-2 rounded-sm px-2" type="text" placeholder="New habit" value={habitName} onChange={(e) => setHabitName(e.target.value)} />
             <div className="flex w-full gap-5">
                 <div className="flex justify-center cursor-pointer gap-4">
-                    <div className="w-8 h-8 bg-green-500 rounded-full block ring-green-600 hover:ring-2 ring-offset-1" ></div>
-                    <div className="w-8 h-8 bg-red-500 rounded-full block ring-red-600 hover:ring-2 ring-offset-1" ></div>
-                    <div className="w-8 h-8 bg-orange-500 rounded-full block ring-orange-600 hover:ring-2 ring-offset-1" ></div>
-                    <div className="w-8 h-8 bg-yellow-500 rounded-full block ring-yellow-600 hover:ring-2 ring-offset-1" ></div>
-                    <div className="w-8 h-8 bg-purple-500 rounded-full block ring-purple-600 hover:ring-2 ring-offset-1" ></div>
+                    {colors.map((c) => (
+                        <div key={c.value} className={`w-8 h-8 rounded-full hover:ring-2 ring-offset-1 cursor-pointer ${c.class} ${selectedColor === c.value ? "ring-2" : ""}`} onClick={() => setSelectedColor(c.value)} ></div>
+                    ))}
                 </div>
-                <button className="border-2 rounded-md px-6 cursor-pointer">Add +</button>
+                <button type="submit" className="border-2 rounded-md px-6 cursor-pointer">Add +</button>
             </div>
-        </div>
+        </form>
     )
 }
