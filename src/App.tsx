@@ -17,7 +17,9 @@ function App() {
     <main className="flex flex-col items-center min-h-screen">
       <Header/>
       <NewHabitForm onAddHabit={handleAddHabit} />
-      <HabitCard/>
+      {habits.map((habit, index) => (
+        <HabitCard key={index} habit={habit}/>
+      ))}
     </main>
   );
 }

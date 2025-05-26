@@ -22,7 +22,7 @@ export const NewHabitForm = ({ onAddHabit }: NewHabitFormProps) => {
             <div className="flex w-full gap-5">
                 <div className="flex justify-center cursor-pointer gap-4">
                     {colors.map((c) => (
-                        <div key={c.value} className={`w-8 h-8 rounded-full hover:ring-2 ring-offset-1 cursor-pointer ${c.class} ${selectedColor === c.value ? "ring-2" : ""}`} onClick={() => setSelectedColor(c.value)} ></div>
+                        <div key={c.class} className={`w-8 h-8 rounded-full hover:ring-2 ring-offset-1 cursor-pointer ${c.class} ${selectedColor === c.class ? "ring-2" : ""}`} onClick={() => setSelectedColor(c.class)} ></div>
                     ))}
                 </div>
                 <button type="submit" className="border-2 rounded-md px-6 cursor-pointer">Add +</button>
