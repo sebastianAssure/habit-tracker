@@ -11,7 +11,7 @@ export const NewHabitForm = ({ onAddHabit }: NewHabitFormProps) => {
 
         if (!habitName.trim() || !selectedColor) return;
 
-        onAddHabit({name: habitName, color: selectedColor});
+        onAddHabit({id: Date.now(), name: habitName, color: selectedColor, checkedDays: Array(7).fill(false)});
         setHabitName("");
         setSelectedColor(null);
     }

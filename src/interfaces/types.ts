@@ -1,6 +1,13 @@
 export interface HabitProps {
+    id: number;
     name: string;
     color: string;
+    checkedDays: boolean[]; 
+}
+
+export interface HabitCardProps {
+    habit: HabitProps;
+    onDelete: (id: number) => void;
 }
 
 export interface NewHabitFormProps {
