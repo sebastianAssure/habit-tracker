@@ -7,7 +7,7 @@ export interface HabitProps {
 
 export interface HabitCardProps {
     habit: HabitProps;
-    onDelete: (id: number) => void;
+    onDeleteHabit: (id: number) => void;
 }
 
 export interface NewHabitFormProps {

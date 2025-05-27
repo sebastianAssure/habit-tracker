@@ -32,7 +32,7 @@ function App() {
       <Header/>
       <NewHabitForm onAddHabit={handleAddHabit} />
       {habits.map((habit) => (
-        <HabitCard key={habit.id} habit={habit} onDelete={handleDeleteHabit}/>
+        <HabitCard key={habit.id} habit={habit} onDeleteHabit={handleDeleteHabit}/>
       ))}
     </main>
   );
