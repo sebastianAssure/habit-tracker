@@ -27,12 +27,32 @@ function App() {
     localStorage.setItem("habits", JSON.stringify(updatedHabits));
   }
 
+  const handleResetHabits = () => {
+    const resetHabits = habits.map(habit => ({...habit, checkedDays: Array(7).fill(false)}));
+    setHabits(resetHabits);
+    localStorage.setItem("habits", JSON.stringify(resetHabits));
+  }
+
+  const handleToggleDay = (habitId: number, dayIndex: number) => {
+    const updatedHabits = habits.map(habit => {
+      if (habit.id === habitId) {
+        const updatedDays = [...habit.checkedDays];
+        updatedDays[dayIndex] = !updatedDays[dayIndex];
+        return { ...habit, checkedDays: updatedDays };
+      }
+      return habit;
+    });
+
+    setHabits(updatedHabits);
+    localStorage.setItem("habits", JSON.stringify(updatedHabits));
+  };
+
   return (
     <main className="flex flex-col items-center min-h-screen">
-      <Header/>
+      <Header onReset={handleResetHabits}/>
       <NewHabitForm onAddHabit={handleAddHabit} />
       {habits.map((habit) => (
-        <HabitCard key={habit.id} habit={habit} onDeleteHabit={handleDeleteHabit}/>
+        <HabitCard key={habit.id} habit={habit} onToggleDay={handleToggleDay} onDeleteHabit={handleDeleteHabit}/>
       ))}
     </main>
   );

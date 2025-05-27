@@ -8,6 +8,11 @@ export interface HabitProps {
 export interface HabitCardProps {
     habit: HabitProps;
     onDeleteHabit: (id: number) => void;
+    onToggleDay: (habitId: number, dayIndex: number) => void;
+}
+
+export interface HeaderProps {
+    onReset: () => void;
 }
 
 export interface NewHabitFormProps {
@@ -16,7 +21,7 @@ export interface NewHabitFormProps {
 
 export interface DayCheckBoxProps {
     checkedDays: boolean[];
-    setCheckedDays: (days: boolean[]) => void;
+    onToggleDay: (index: number) => void;
 };
 
 export interface ProgressBarProps {
