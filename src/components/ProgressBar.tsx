@@ -8,7 +8,7 @@ export const ProgressBar = ({completed, total}: ProgressBarProps) => {
             <div className="w-50 bg-stone-200 block overflow-hidden h-4">
                 <div className="h-full w-full rounded-none bg-green-500" style={{ width: `${percentage}%` }}></div>
             </div>
-            <p>{completed}/{total} days completed</p>
+            <p>{completed} / {total} days completed</p>
         </div>
     )
 }
