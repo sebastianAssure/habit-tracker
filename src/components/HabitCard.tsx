@@ -1,6 +1,8 @@
 import type { HabitCardProps } from "../interfaces/types"
 import { DayCheckbox } from "./DayCheckbox"
 import { ProgressBar } from "./ProgressBar"
+import { GiAlliedStar } from "react-icons/gi";
+
 
 export const HabitCard = ({ habit, onDeleteHabit, onToggleDay }: HabitCardProps) => {
     const completedCount = habit.checkedDays.filter(Boolean).length;
@@ -9,7 +11,7 @@ export const HabitCard = ({ habit, onDeleteHabit, onToggleDay }: HabitCardProps)
         <div className="group flex flex-col w-100 h-45 items-center py-3">
             <div className={`flex w-full ${habit.color} justify-between px-2 border-2 rounded-md`}>
                 <h1>{habit.name}
-                    {completedCount == 7 ? <span className="pl-2">Estrella</span> : ""} 
+                    {completedCount == 7 && <GiAlliedStar className="inline-block text-black ml-2 text-xl drop-shadow" /> } 
                 </h1>
                 <span className="invisible group-hover:visible cursor-pointer" onClick={()=>onDeleteHabit(habit.id)}>X</span>
             </div>
