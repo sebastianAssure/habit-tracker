@@ -8,3 +8,6 @@ Este es un proyecto personal desarrollado para practicar habilidades de frontend
 - 🧠 **TypeScript** – Tipado estático para mejorar la calidad del código.
 - ⚡ **Vite** – Herramienta de desarrollo rápida y ligera.
 - 🎨 **Tailwind CSS** – Framework de estilos utilitario para diseño moderno y responsive.
+
+# Autor
+Sebastian Padilla Zabala.
