@@ -5,7 +5,7 @@ import { GiAlliedStar } from "react-icons/gi";
 import { FiEdit } from "react-icons/fi";
 
 
-export const HabitCard = ({ habit, onEditHabit, onDeleteHabit, onToggleDay }: HabitCardProps) => {
+export const HabitCard = ({ habit, onEditHabit, onRequestDelete, onToggleDay }: HabitCardProps) => {
     const completedCount = habit.checkedDays.filter(Boolean).length;
 
     return (
@@ -18,7 +18,7 @@ export const HabitCard = ({ habit, onEditHabit, onDeleteHabit, onToggleDay }: Ha
                     <FiEdit className="visible md:invisible md:group-hover:visible cursor-pointer"
                     onClick={() => onEditHabit(habit)}
                     />
-                    <span className="visible md:invisible md:group-hover:visible cursor-pointer" onClick={()=>onDeleteHabit(habit.id)}>X</span>
+                    <span className="visible md:invisible md:group-hover:visible cursor-pointer" onClick={()=>onRequestDelete(habit)}>X</span>
                 </div>
             </div>
             <div className="w-full border- border-b-2 border-l-2 border-r-2 rounded-b-md">
