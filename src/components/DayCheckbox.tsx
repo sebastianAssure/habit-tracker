@@ -1,6 +1,6 @@
-import type { DayCheckBoxProps } from "../interfaces/types";
+import type { DayCheckBoxProps } from "../interfaces";
 
-export const DayCheckbox = ({checkedDays, onToggleDay}: DayCheckBoxProps) => {
+export const DayCheckbox = ({checkedDays, onChangeDay}: DayCheckBoxProps) => {
     const days = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
 
     return (
@@ -8,7 +8,7 @@ export const DayCheckbox = ({checkedDays, onToggleDay}: DayCheckBoxProps) => {
             {days.map((day, index) => (
                 <div key={index} className="flex flex-col items-center gap-1 text-sm font-medium font-patrick">
                     <label>{day}</label>
-                    <input className="cursor-pointer" type="checkbox" checked={checkedDays[index]} onChange={() => onToggleDay(index)} />
+                    <input className="cursor-pointer" type="checkbox" checked={checkedDays[index]} onChange={() => onChangeDay(index)} />
                 </div>
             ))}
         </div>

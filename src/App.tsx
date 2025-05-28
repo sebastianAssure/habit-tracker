@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { HabitCard } from "./components/HabitCard";
 import { Header } from "./components/Header";
 import { NewHabitForm } from "./components/NewHabitForm";
-import type { HabitProps } from "./interfaces/types";
+import type { HabitProps } from "./interfaces";
+import { EditHabitModal } from "./components/EditHabitModal";
 
 function App() {
   const [habits, setHabits] = useState<HabitProps[]>([]);
+  const [editingHabit, setEditingHabit] = useState<HabitProps | null>(null);
 
   useEffect(() => {
     const storedHabits = localStorage.getItem("habits");
@@ -14,22 +16,32 @@ function App() {
     }
   }, []);
 
+  const saveAndSetHabits = (newHabits: HabitProps[]) => {
+    setHabits(newHabits);
+    localStorage.setItem("habits", JSON.stringify(newHabits));
+  };
+
   const handleAddHabit = (habit: HabitProps) => {
-    const updateHabits = [...habits, habit]
-    setHabits(updateHabits);
-    localStorage.setItem("habits", JSON.stringify(updateHabits));
+    const updatedHabits = [...habits, habit]
+    saveAndSetHabits(updatedHabits);
   };
 
   const handleDeleteHabit = (id: number) => {
     const updatedHabits = habits.filter(habit => habit.id !== id);
-    setHabits(updatedHabits);
-    localStorage.setItem("habits", JSON.stringify(updatedHabits));
+    saveAndSetHabits(updatedHabits);
   }
+
+  const handleEditHabit = (updatedHabit: HabitProps) => {
+    const updated = habits.map(habit =>
+    habit.id === updatedHabit.id ? updatedHabit : habit
+    );
+    saveAndSetHabits(updated);
+    setEditingHabit(null);
+  };
 
   const handleResetHabits = () => {
     const resetHabits = habits.map(habit => ({ ...habit, checkedDays: Array(7).fill(false) }));
-    setHabits(resetHabits);
-    localStorage.setItem("habits", JSON.stringify(resetHabits));
+    saveAndSetHabits(resetHabits);
   }
 
   const handleToggleDay = (habitId: number, dayIndex: number) => {
@@ -42,19 +54,25 @@ function App() {
       return habit;
     });
 
-    setHabits(updatedHabits);
-    localStorage.setItem("habits", JSON.stringify(updatedHabits));
+    saveAndSetHabits(updatedHabits);
   };
-
+  
   return (
     <main className="flex flex-col w-full max-w-[900px] mx-auto px-4">
       <Header onReset={handleResetHabits} />
       <NewHabitForm onAddHabit={handleAddHabit} />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2 w-full">
         {habits.map((habit) => (
-          <HabitCard key={habit.id} habit={habit} onToggleDay={handleToggleDay} onDeleteHabit={handleDeleteHabit} />
+          <HabitCard key={habit.id} habit={habit} onEditHabit={(habit) => setEditingHabit(habit)} onToggleDay={handleToggleDay} onDeleteHabit={handleDeleteHabit} />
         ))}
       </div>
+        {editingHabit && (
+            <EditHabitModal
+              habit={editingHabit}
+              onClose={() => setEditingHabit(null)}
+              onSave={handleEditHabit}
+            />
+        )}
     </main>
   );
 }
