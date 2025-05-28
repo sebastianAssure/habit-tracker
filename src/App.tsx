@@ -22,30 +22,33 @@ function App() {
   };
 
   const handleAddHabit = (habit: HabitProps) => {
-    const updatedHabits = [...habits, habit]
+    const updatedHabits = [...habits, habit];
     saveAndSetHabits(updatedHabits);
   };
 
   const handleDeleteHabit = (id: number) => {
-    const updatedHabits = habits.filter(habit => habit.id !== id);
+    const updatedHabits = habits.filter((habit) => habit.id !== id);
     saveAndSetHabits(updatedHabits);
-  }
+  };
 
   const handleEditHabit = (updatedHabit: HabitProps) => {
-    const updated = habits.map(habit =>
-    habit.id === updatedHabit.id ? updatedHabit : habit
+    const updated = habits.map((habit) =>
+      habit.id === updatedHabit.id ? updatedHabit : habit
     );
     saveAndSetHabits(updated);
     setEditingHabit(null);
   };
 
   const handleResetHabits = () => {
-    const resetHabits = habits.map(habit => ({ ...habit, checkedDays: Array(7).fill(false) }));
+    const resetHabits = habits.map((habit) => ({
+      ...habit,
+      checkedDays: Array(7).fill(false),
+    }));
     saveAndSetHabits(resetHabits);
-  }
+  };
 
   const handleToggleDay = (habitId: number, dayIndex: number) => {
-    const updatedHabits = habits.map(habit => {
+    const updatedHabits = habits.map((habit) => {
       if (habit.id === habitId) {
         const updatedDays = [...habit.checkedDays];
         updatedDays[dayIndex] = !updatedDays[dayIndex];
@@ -56,23 +59,33 @@ function App() {
 
     saveAndSetHabits(updatedHabits);
   };
-  
+
   return (
     <main className="flex flex-col w-full max-w-[900px] mx-auto px-4">
-      <Header onReset={handleResetHabits} />
-      <NewHabitForm onAddHabit={handleAddHabit} />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 w-full">
-        {habits.map((habit) => (
-          <HabitCard key={habit.id} habit={habit} onEditHabit={(habit) => setEditingHabit(habit)} onToggleDay={handleToggleDay} onDeleteHabit={handleDeleteHabit} />
-        ))}
+      <div className="sticky top-0 bg-white z-50 sm:static sm:p-0">
+        <Header onReset={handleResetHabits} />
+        <NewHabitForm onAddHabit={handleAddHabit} />
       </div>
-        {editingHabit && (
-            <EditHabitModal
-              habit={editingHabit}
-              onClose={() => setEditingHabit(null)}
-              onSave={handleEditHabit}
+      <div className="flex-1 overflow-y-auto mt-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 w-full pb-8">
+          {habits.map((habit) => (
+            <HabitCard
+              key={habit.id}
+              habit={habit}
+              onEditHabit={(habit) => setEditingHabit(habit)}
+              onToggleDay={handleToggleDay}
+              onDeleteHabit={handleDeleteHabit}
             />
-        )}
+          ))}
+        </div>
+      </div>
+      {editingHabit && (
+        <EditHabitModal
+          habit={editingHabit}
+          onClose={() => setEditingHabit(null)}
+          onSave={handleEditHabit}
+        />
+      )}
     </main>
   );
 }

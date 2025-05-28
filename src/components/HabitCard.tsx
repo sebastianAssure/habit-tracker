@@ -9,7 +9,7 @@ export const HabitCard = ({ habit, onEditHabit, onDeleteHabit, onToggleDay }: Ha
     const completedCount = habit.checkedDays.filter(Boolean).length;
 
     return (
-        <div className="max-w-[420px] w-full group flex flex-wrap items-center pt-2">
+        <div className="max-w-[420px] w-full group flex flex-wrap items-center pt-2 px-2">
             <div className={`flex w-full ${habit.color} justify-between px-2 sm:px-4 py-1 border-2 rounded-md`}>
                 <h1 className="text-base sm:text-lg lg:text-xl font-semibold font-patrick">{habit.name}
                     {completedCount == 7 && <GiAlliedStar className="inline-block text-black ml-2 text-xl" /> } 
