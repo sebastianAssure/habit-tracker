@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import "./App.css";
 import { HabitCard } from "./components/HabitCard";
 import { Header } from "./components/Header";
 import { NewHabitForm } from "./components/NewHabitForm";
@@ -28,7 +27,7 @@ function App() {
   }
 
   const handleResetHabits = () => {
-    const resetHabits = habits.map(habit => ({...habit, checkedDays: Array(7).fill(false)}));
+    const resetHabits = habits.map(habit => ({ ...habit, checkedDays: Array(7).fill(false) }));
     setHabits(resetHabits);
     localStorage.setItem("habits", JSON.stringify(resetHabits));
   }
@@ -48,12 +47,14 @@ function App() {
   };
 
   return (
-    <main className="flex flex-col items-center min-h-screen">
-      <Header onReset={handleResetHabits}/>
+    <main className="flex flex-col w-full max-w-[900px] mx-auto px-4">
+      <Header onReset={handleResetHabits} />
       <NewHabitForm onAddHabit={handleAddHabit} />
-      {habits.map((habit) => (
-        <HabitCard key={habit.id} habit={habit} onToggleDay={handleToggleDay} onDeleteHabit={handleDeleteHabit}/>
-      ))}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 w-full">
+        {habits.map((habit) => (
+          <HabitCard key={habit.id} habit={habit} onToggleDay={handleToggleDay} onDeleteHabit={handleDeleteHabit} />
+        ))}
+      </div>
     </main>
   );
 }
