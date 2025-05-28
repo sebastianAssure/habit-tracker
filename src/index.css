@@ -1,1 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Patrick+Hand&family=Quicksand:wght@300..700&family=Roboto&display=swap');
 @import "tailwindcss";
+
+@theme {
+    --font-patrick: 'Montserrat', sans-serif;
+}

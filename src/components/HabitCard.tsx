@@ -8,10 +8,10 @@ export const HabitCard = ({ habit, onDeleteHabit, onToggleDay }: HabitCardProps)
     const completedCount = habit.checkedDays.filter(Boolean).length;
 
     return (
-        <div className="w-full px-1 group flex flex-col h-auto items-center m-2">
-            <div className={`flex w-full ${habit.color} justify-between px-2 py-1 border-2 rounded-md`}>
-                <h1 className="text-xl font-semibold">{habit.name}
-                    {completedCount == 7 && <GiAlliedStar className="inline-block text-black ml-2 text-xl¿" /> } 
+        <div className="max-w-[420px] w-full group flex flex-wrap items-center pt-2">
+            <div className={`flex w-full ${habit.color} justify-between px-2 sm:px-4 py-1 border-2 rounded-md`}>
+                <h1 className="text-base sm:text-lg lg:text-xl font-semibold font-patrick">{habit.name}
+                    {completedCount == 7 && <GiAlliedStar className="inline-block text-black ml-2 text-xl" /> } 
                 </h1>
                 <span className="invisible group-hover:visible cursor-pointer" onClick={()=>onDeleteHabit(habit.id)}>X</span>
             </div>

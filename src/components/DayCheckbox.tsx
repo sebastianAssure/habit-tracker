@@ -6,8 +6,8 @@ export const DayCheckbox = ({checkedDays, onToggleDay}: DayCheckBoxProps) => {
     return (
         <div className="w-full grid grid-cols-7 gap-2 px-2 py-4">
             {days.map((day, index) => (
-                <div key={index} className="flex flex-col items-center gap-1">
-                    <p className="text-sm">{day}</p>
+                <div key={index} className="flex flex-col items-center gap-1 text-sm font-medium font-patrick">
+                    <label>{day}</label>
                     <input className="cursor-pointer" type="checkbox" checked={checkedDays[index]} onChange={() => onToggleDay(index)} />
                 </div>
             ))}

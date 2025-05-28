@@ -17,15 +17,15 @@ export const NewHabitForm = ({ onAddHabit }: NewHabitFormProps) => {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="w-full flex flex-col items-center gap-3 p-3">
-            <input className="w-full max-w-[600px] border-2 p-1" type="text" placeholder="New habit" value={habitName} onChange={(e) => setHabitName(e.target.value)} />
+        <form onSubmit={handleSubmit} className="w-full flex flex-col items-center gap-3 sm:gap-5 p-3">
+            <input className="w-full border-2 p-1 font-patrick" type="text" placeholder="New habit" value={habitName} onChange={(e) => setHabitName(e.target.value)} />
             <div className="flex flex-wrap justify-between w-full gap-5">
                 <div className="flex flex-wrap justify-center cursor-pointer gap-4">
                     {colors.map((c) => (
                         <div key={c.class} className={`w-8 h-8 rounded-full hover:ring-2 ring-offset-1 cursor-pointer ${c.class} ${selectedColor === c.class ? "ring-2" : ""}`} onClick={() => setSelectedColor(c.class)} ></div>
                     ))}
                 </div>
-                <button type="submit" className="border-2 rounded-md px-5 py-1 text-sm cursor-pointer">Add +</button>
+                <button type="submit" className="border-2 rounded-md px-5 py-1 text-sm font-patrick cursor-pointer">Add +</button>
             </div>
         </form>
     )
