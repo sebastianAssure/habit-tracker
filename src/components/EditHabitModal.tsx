@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { EditHabitModalProps } from "../interfaces";
+import type { EditHabitModalProps } from "../interfaces/types";
 import { ColorPicker } from "./ColorPicker";
 
 export const EditHabitModal = ({ habit, onClose, onSave }: EditHabitModalProps) => {

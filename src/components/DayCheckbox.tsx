@@ -1,4 +1,4 @@
-import type { DayCheckBoxProps } from "../interfaces";
+import type { DayCheckBoxProps } from "../interfaces/types";
 
 export const DayCheckbox = ({checkedDays, onChangeDay}: DayCheckBoxProps) => {
     const days = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];

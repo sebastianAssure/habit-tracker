@@ -1,4 +1,4 @@
-import type { ColorPickerProps } from "../interfaces";
+import type { ColorPickerProps } from "../interfaces/types";
 import { colors } from "../utils/colors";
 
 export const ColorPicker = ({ selectedColor, onSelect }: ColorPickerProps) => {

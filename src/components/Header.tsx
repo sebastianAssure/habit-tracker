@@ -1,4 +1,4 @@
-import type { HeaderProps } from "../interfaces"
+import type { HeaderProps } from "../interfaces/types"
 
 export const Header = ({onReset}: HeaderProps) => {
     return (

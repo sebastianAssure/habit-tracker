@@ -1,4 +1,4 @@
-import type { ProgressBarProps } from "../interfaces";
+import type { ProgressBarProps } from "../interfaces/types";
 
 export const ProgressBar = ({completed, total}: ProgressBarProps) => {
     const percentage = (completed / total) * 100;

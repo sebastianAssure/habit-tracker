@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { HabitCard } from "./components/HabitCard";
 import { Header } from "./components/Header";
 import { NewHabitForm } from "./components/NewHabitForm";
-import type { HabitProps } from "./interfaces";
+import type { HabitProps } from "./interfaces/types";
 import { EditHabitModal } from "./components/EditHabitModal";
 
 function App() {

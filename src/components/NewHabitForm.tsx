@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { NewHabitFormProps } from "../interfaces";
+import type { NewHabitFormProps } from "../interfaces/types";
 import { ColorPicker } from "./ColorPicker";
 
 export const NewHabitForm = ({ onAddHabit }: NewHabitFormProps) => {

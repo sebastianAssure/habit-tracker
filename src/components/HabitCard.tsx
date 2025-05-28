@@ -1,4 +1,4 @@
-import type { HabitCardProps } from "../interfaces"
+import type { HabitCardProps } from "../interfaces/types"
 import { DayCheckbox } from "./DayCheckbox"
 import { ProgressBar } from "./ProgressBar"
 import { GiAlliedStar } from "react-icons/gi";
