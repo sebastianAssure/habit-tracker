@@ -24,7 +24,7 @@ export interface HabitProps {
 export interface HabitCardProps {
     habit: HabitProps;
     onEditHabit: (habit: HabitProps) => void;
-    onDeleteHabit: (id: number) => void;
+    onRequestDelete: (habit: HabitProps) => void;
     onToggleDay: (habitId: number, dayIndex: number) => void;
 }
 
@@ -40,3 +40,9 @@ export interface ProgressBarProps {
     completed: number;
     total: number;
 };
+
+export interface ConfirmDeleteModalProps {
+    habitName: string;
+    onCancel: () => void;
+    onConfirm: () => void;
+}

@@ -4,10 +4,13 @@ import { Header } from "./components/Header";
 import { NewHabitForm } from "./components/NewHabitForm";
 import type { HabitProps } from "./interfaces/types";
 import { EditHabitModal } from "./components/EditHabitModal";
+import { ConfirmDeleteModal } from "./components/ConfirmDeleteModal";
 
 function App() {
   const [habits, setHabits] = useState<HabitProps[]>([]);
   const [editingHabit, setEditingHabit] = useState<HabitProps | null>(null);
+  const [deletingHabit, setDeletingHabit] = useState<HabitProps | null>(null);
+
 
   useEffect(() => {
     const storedHabits = localStorage.getItem("habits");
@@ -74,7 +77,7 @@ function App() {
               habit={habit}
               onEditHabit={(habit) => setEditingHabit(habit)}
               onToggleDay={handleToggleDay}
-              onDeleteHabit={handleDeleteHabit}
+              onRequestDelete={(habit) => setDeletingHabit(habit)}
             />
           ))}
         </div>
@@ -84,6 +87,16 @@ function App() {
           habit={editingHabit}
           onClose={() => setEditingHabit(null)}
           onSave={handleEditHabit}
+        />
+      )}
+      {deletingHabit && (
+        <ConfirmDeleteModal
+            habitName={deletingHabit.name}
+            onCancel={() => setDeletingHabit(null)}
+            onConfirm={() => {
+            handleDeleteHabit(deletingHabit.id);
+            setDeletingHabit(null);
+            }}
         />
       )}
     </main>
