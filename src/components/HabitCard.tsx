@@ -3,10 +3,23 @@ import { DayCheckbox } from "./DayCheckbox"
 import { ProgressBar } from "./ProgressBar"
 import { GiAlliedStar } from "react-icons/gi";
 import { FiEdit } from "react-icons/fi";
+import confetti from "canvas-confetti";
+import { useEffect, useRef } from "react";
 
 
 export const HabitCard = ({ habit, onEditHabit, onRequestDelete, onToggleDay }: HabitCardProps) => {
     const completedCount = habit.checkedDays.filter(Boolean).length;
+    const confettiShown = useRef(false);
+
+    useEffect(() => {
+    if (completedCount === 7 && !confettiShown.current) {
+      confetti();
+      confettiShown.current = true;
+    }
+    if (completedCount < 7) {
+      confettiShown.current = false;
+    }
+  }, [completedCount]);
 
     return (
         <div className="max-w-[420px] w-full group flex flex-wrap items-center pt-2 px-2">
